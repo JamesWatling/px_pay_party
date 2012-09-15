@@ -27,7 +27,7 @@ Integrating into your Rails app
 Add to your Gemfile
 ----------------------------
 
-    gem 'px_pay_party'
+gem 'px_pay_party'
 
 
 Setup your API keys
@@ -78,7 +78,7 @@ Create routes to your payments controller
     get 'payment/start' => 'payments#start', as: 'start_payment'
     get 'payment/finish' => 'payments#finish', as: 'finish_payment'
 
-link to make payment
+Link to make payment
 --------------------
 
 I think this is getting a bit obvious, however, use this in your view:
@@ -89,21 +89,23 @@ I think this is getting a bit obvious, however, use this in your view:
 Here is a cheat for testing via cucumber, capybara, selenium
 ---------------------------------------
 
-Then /^I should see I am being charged the full amount$/ do
-  current_url.should =~ /paymentexpress\.com/
-  page.should have_content '$50.00'
-end
+    Then /^I should see I am being charged the full amount$/ do
+      current_url.should =~ /paymentexpress\.com/
+      page.should have_content '$50.00'
+    end
 
-When /^I enter my credit card details$/ do
-  fill_in 'CardNum', :with => '4111111111111111'
-  fill_in 'ExMnth', :with => '12'
-  fill_in 'ExYr', :with => '20'
-  fill_in 'NmeCard', :with => 'Testbert Testrie'
-  fill_in 'Cvc2', :with => '911'
-  click_on 'submitImageButton'
-end
+    When /^I enter my credit card details$/ do
+      fill_in 'CardNum', :with => '4111111111111111'
+      fill_in 'ExMnth', :with => '12'
+      fill_in 'ExYr', :with => '20'
+      fill_in 'NmeCard', :with => 'Testbert Testrie'
+      fill_in 'Cvc2', :with => '911'
+      click_on 'submitImageButton'
+    end
 
-Then /^I should see that payment was successful$/ do
-  page.should have_content 'APPROVED'
-  click_on 'Click Here to Proceed to the Next step'
-end
+    Then /^I should see that payment was successful$/ do
+      page.should have_content 'APPROVED'
+      click_on 'Click Here to Proceed to the Next step'
+    end
+
+
